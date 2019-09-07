@@ -1,0 +1,31 @@
+﻿@page
+@using MyCookBookWebApplication.Models
+@model MyCookBookWebApplication.Pages.SearchResultsModel
+@{
+
+}
+
+<!DOCTYPE html>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<html lang="heb" dir="rtl">
+<head>
+	<title>Recipe</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="~/css/ListOfRecipesStyle.css">
+</head>
+<body>
+
+	<div>
+		<h2>תוצאות חיפוש עבור: @Model.searchStr</h2>
+		@foreach (Recipe recipe in Model.Recipes) {
+			<div class="recentRec">
+				<p><a asp-page="RecipePage" asp-route-id="@recipe.Id">@recipe.Title</a></p>
+			</div>
+		}
+	</div>
+
+</body>
+</html>
+
+

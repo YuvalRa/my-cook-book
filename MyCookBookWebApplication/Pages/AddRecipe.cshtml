@@ -1,0 +1,58 @@
+﻿@page
+@model MyCookBookWebApplication.Pages.AddRecipeModel
+@{
+    ViewData["Title"] = "AddRecipe";
+	
+}
+
+<!DOCTYPE html>
+<html lang="heb" dir="rtl">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<head>
+	<title>Recipe</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="~/css/AddRecipePageStyle.css">
+</head>
+<body>
+
+	<div class="header">
+		<h3>הוספת מתכון</h3>
+	</div>
+
+	<form asp-page-handler="Save" asp-route-id="@Model.User.Id" class="newRecipe" method="post">
+		<div class="container">
+			<label for="name"><b>שם המתכון</b><br></label>
+			<textarea type="text" name="name" cols="50" required></textarea>
+
+			<label for="ing"><br><b>מצרכים</b><br></label>
+			<textarea name="ing" rows="10" cols="50" required></textarea>
+
+			<label for="prep"><br><b>הוראות הכנה</b><br></label>
+			<textarea name="prep" rows="10" cols="50" required></textarea>
+
+			<label for=""><br><b>לינק למקור</b><br></label>
+			<textarea type="url" name="link" rows="2" cols="50"></textarea>
+
+			<label for=""><br><b>טאגים</b> (יש להפריד בין טאגים בפסיק)<br></label>
+			<textarea type="text" name="tags" cols="50"></textarea>
+
+			<label for=""><br><b>הערות</b><br></label>
+			<textarea type="text" name="comments" cols="50"></textarea>
+
+			<label for=""><br><b>דירוג</b><br></label>
+			<select type="number" name="rating">
+				<option value="0">ללא</option>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+			</select>
+			<br>
+			<button type="submit" class="addBtn"><b>הוסף</b></button>
+		</div>
+	</form>
+</body>
+</html>
+

@@ -1,0 +1,97 @@
+﻿* {
+    box-sizing: border-box
+}
+
+.mainHeader {
+    padding: 30px;
+    text-align: center;
+    background: #1E90FF;
+    color: white;
+}
+
+.mainHeader h1 {
+    font-size: 40px;
+}
+
+.navbar {
+	display: none;
+    overflow: hidden; 
+    background-color: #7aaaff; 
+    font-family: Calibri, serif;
+}
+
+    .navbar a {
+        float: right; 
+        display: block;
+        color: white;
+        text-align: center; 
+        padding: 14px 20px; 
+        text-decoration: none;
+    }
+
+body {
+    font-family: Calibri, serif;
+}
+
+form {
+    padding: 10px 10px;
+}
+
+input {
+    width: 80%;
+    padding: 15px;
+    margin: 5px 3px 22px 0;
+    display: block;
+    border: none;
+    border-radius: 5px;
+    background: #f1f1f1;
+}
+
+    input:focus{
+        background-color: #ddd;
+        outline: none;
+    }
+
+label {
+    display: inline-list-item;
+    font-size: 18px;
+}
+
+.loginOrSignUp {
+    display: flex;
+    font-family: Calibri, serif;
+    flex-wrap: wrap;
+}
+
+.signUp {
+    flex: 50%;
+    padding: 2px 15px;
+}
+
+.login {
+    flex: 50%;
+    padding: 2px 15px;
+}
+
+.registerbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 20%;
+    opacity: 0.9;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+.registerbtn:hover {
+    opacity: 1;
+}
+
+.signin {
+    text-align: right;
+    border-radius: 5px;
+    font-size: 18px;
+}

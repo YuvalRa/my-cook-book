@@ -1,0 +1,54 @@
+﻿@page
+@using MyCookBookWebApplication.Models
+@model MyCookBookWebApplication.Pages.EditRecipeModel
+@{
+	ViewData["Title"] = "EditRecipe";
+
+	Recipe recipe = Model.Recipe;
+	List<Comment> comments = Model.Comments;
+
+
+}
+
+<!DOCTYPE html>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<html lang="heb" dir="rtl">
+<head>
+	<title>Recipe</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="~/css/EditRecipePageStyle.css">
+</head>
+<body>
+
+<div class="header">
+	<h3>עריכת מתכון</h3>
+</div>
+
+<form asp-page-handler="Save" asp-route-id="@recipe.Id" class="recipe" method="post">
+	<div class="container">
+		<label for="name"><b>שם המתכון</b><br></label>
+		<textarea type="text" name="name" cols="50">@recipe.Title</textarea>
+		<br>
+		<label for="ing"><br><b>מצרכים</b><br></label>
+		<textarea name="ing" rows="10" cols="50">@recipe.Ingredients</textarea>
+		<br>
+		<label for="prep"><br><b>הוראות הכנה</b><br></label>
+		<textarea name="prep" rows="10" cols="50">@recipe.Preparation</textarea>
+		<br>
+		<label for="link"><br><b>לינק למקור</b><br></label>
+		<textarea type="url" name="link" rows="2" cols="50">@recipe.Link</textarea>
+		<br>
+		<label for="comments"><br><b>הערות</b><br></label>
+		@for (int i = 0; i < comments.Count; i++) {
+			<textarea type="text" name="comments" cols="50">@comments[i].CommentText</textarea>
+			<br />
+		}
+		<button type="submit" class="addBtn"><b>שמור</b></button>
+	</div>
+</form>
+
+</body>
+</html>
+
+

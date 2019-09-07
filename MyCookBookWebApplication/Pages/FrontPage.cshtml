@@ -1,0 +1,61 @@
+﻿@page
+@model MyCookBookWebApplication.Pages.FrontPageModel
+@{
+    ViewData["Title"] = "FrontPage";
+
+}
+
+<!DOCTYPE html>
+<html lang="heb" dir="rtl">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<head>
+	<title>Recipe</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="~/css/FrontPageStyle.css">
+</head>
+<body>
+<div class="mainHeader">
+	<h1>My Cook Book</h1>
+</div>
+<div class="navbar">
+	<a href="#"> </a>
+</div>
+
+<div class="loginOrSignUp">
+	<form asp-page-handler="register" asp-route-id="" class="signUp" methode="post">
+		<div class="container">
+			<h1>הרשמה</h1>
+
+			<label for="email"><b>מייל</b></label>
+			<input type="email" name="email" required>
+
+			<label for="psw"><b>סיסמה</b></label>
+			<input type="password" name="psw" required>
+
+			<label for="psw-repeat"><b>וידוא סיסמה</b></label>
+			<input type="password" name="psw-repeat" required>
+
+			<button type="submit" class="registerbtn"><b>הרשם</b></button>
+		</div>
+	</form>
+
+    <form asp-page-handler="login" asp-route-id="" class="login" method="post">
+        @if (Model.failedTologin) {
+            <h1 style="color: red">שם משתמש או סיסמה לא נכונים</h1>
+        }
+        <div class="container signin">
+            <h1>כבר רשום? היכנס</h1>
+        </div>
+        <label for="email"><b>מייל</b></label>
+        <input type="text" name="email" required>
+
+        <label for="psw"><b>סיסמה</b></label>
+        <input type="password" name="psw" required>
+
+        <button type="submit" class="registerbtn"><b>כניסה</b></button>
+    </form>
+</div>
+
+</body>
+</html>

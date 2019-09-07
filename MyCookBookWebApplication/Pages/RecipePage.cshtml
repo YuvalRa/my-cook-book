@@ -1,0 +1,122 @@
+﻿@page
+@using MyCookBookWebApplication.Models
+@model MyCookBookWebApplication.Pages.RecipePageModel
+@{
+	ViewData["Title"] = "RecipePage";
+	
+	Recipe recipe = Model.Recipe;
+	List<Comment> comments = Model.Comments;
+	string[] ingredients = Model.Ingredients;
+	string[] preparation = Model.Preparation;
+
+}
+
+
+<!DOCTYPE html>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<html lang="heb" dir="rtl">
+<head>
+	<title>Recipe</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="~/css/RecipePageStyle.css">
+</head>
+<body>
+
+	<div class="recipeHeader">
+		<h3>@recipe.Title</h3>
+		<div class="top">
+			<form class="newRecipe" method="post">
+				טאגים:
+				@foreach (string tag in recipe.Tags) {
+					<button type="submit" name="tag" asp-page-handler="Tag" asp-route-id="@tag" class="tag">@tag</button>
+				}
+			</form>
+		</div>
+		<p class="narrow">
+			דירוג:
+			<span class="stars">
+				@if (@recipe.Rating != -1) {
+					for (int i = 5; i > @recipe.Rating; i--) {
+						<span class="fa fa-star"></span>
+					}
+					for (int i = recipe.Rating; i > 0; i--) {
+						<span class="fa fa-star checked"></span>
+					}
+				}
+			</span>
+		</p>
+		<p>
+			תאריך הוספה:
+			<span class="date">@recipe.Date.ToShortDateString()</span>
+		</p>
+		<a href=@recipe.Link>לינק למקור</a>
+	</div>
+
+	<div class="recipeHeaderBtns">
+		<form asp-page-handler="EditRecipe" asp-route-id="@recipe.Id" method="post" style="display: inline;">
+			<button class="recipe btn">עריכה</button>
+		</form>
+		<button class="recipe btn" onclick="showAddTag()">הוספת טאג</button>
+		<button class="recipe btn" onclick="showDeleteTag()">מחיקת טאג</button>
+		<button class="recipe btn" onclick="showChangeRating()">שינוי דירוג</button>
+		<button class="recipe btn" onclick="deleteRecipe()">מחיקת המתכון</button>
+		<br>
+		<form asp-page-handler="addTag" id="addTag" asp-route-id="@recipe.Id" method="post">
+			<textarea type="text" name="newTag"></textarea>
+			<button type="submit" name="addTagBtn" class="saveBtn">שמור</button>
+		</form>
+		<form asp-page-handler="changeRating" id="changeRating" asp-route-id="@recipe.Id" method="post">
+			<select type="number" name="rating">
+				<option value="0">ללא</option>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+			</select>
+			<button type="submit" class="saveBtn">שמור</button>
+		</form>
+		<form asp-page-handler="deleteTag" id="deleteTag" asp-route-id="@recipe.Id" method="post">
+			@for (int i = 0; i < recipe.Tags.Count; i++) {
+				<input type="checkbox" name="tag" value="@recipe.Tags[i]">@recipe.Tags[i]<br>
+			}
+			<button type="submit" class="deleteBtn">מחק</button>
+		</form>
+		<form asp-page-handler="deleteRecipe" id="deleteRecipe" asp-route-id="@recipe.Id" method="post">
+			<span>למחיקה</span>
+			<button type="submit" name="deleteBtn" class="deleteBtn">מחק</button>
+		</form>
+	</div>
+
+	<div class="ingAndPrep">
+		<div class="ingredients">
+			<h4>מצרכים</h4>
+			<ul>
+				@for (int i = 0; i < ingredients.Length; i++) {
+					<li>@ingredients[i]</li>
+				}
+			</ul>
+		</div>
+		<div class="preparation">
+			<h4>הוראות הכנה</h4>
+			@for (int i = 0; i < preparation.Length; i++) {
+				<p>@preparation[i]</p>
+			}
+		</div>
+	</div>
+
+	<div class="comments">
+		<h4>הערות</h4>
+		<ul>
+			@for (int i = 0; i < comments.Count; i++) {
+				<li>@comments[i].CommentText</li>
+			}
+		</ul>
+		<form asp-page-handler="addComment" asp-route-id="@recipe.Id" method="post">
+			<textarea type="text" name="newComment" placeholder="הוספת הערה" cols="50"></textarea>
+			<button type="submit" class="saveBtn">שמור</button>
+		</form>
+	</div>
+</body>
+</html>
