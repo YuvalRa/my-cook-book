@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using MyCookBookWebApplication.Models;
 
 namespace MyCookBookWebApplication.Pages {
-    public class FrontPageModel : PageModel {
+    public class IndexModel : PageModel {
 	    public User User;
         public bool failedTologin = false;
 		Infrastructure.Infrastructure inf = new Infrastructure.Infrastructure();
